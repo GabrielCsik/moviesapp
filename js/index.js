@@ -1,17 +1,58 @@
 document.addEventListener("deviceready", onDeviceReady, false);
-const urlBegin = "https://api.themoviedb.org/3/search/movie?api_key=";
-const API_KEY = "bbd92ee26b128295e6b83f95ab79c675";
+// const urlBegin = "https://api.themoviedb.org/3/search/movie?api_key=";
+// const API_KEY = "bbd92ee26b128295e6b83f95ab79c675";
 const inputField = document.getElementById("inputField");
 const submitButton = document.getElementById("submitButton");
 const moviesSearchable = document.getElementById("movies-searchable");
 
 function onDeviceReady() {
   submitButton.addEventListener("click", InputFieldSearch);
-  inputField.addEventListener('keypress', function(e){
-      if(e.code === "Enter"){
-        console.log("true")
-      }
-  })
+  inputField.addEventListener("keypress", function(e) {
+    if (e.code === "Enter") {
+      console.log("true");
+    }
+  });
+
+  document.onclick = function(e) {
+    const target = e.target;
+    if (target.tagName.toLowerCase() === "img") {
+      console.log("Hey");
+
+      let movieID = target.dataset.movieId;
+      console.log(movieID);
+      let parent = target.parentElement;
+      const sibling = parent.nextElementSibling;
+      sibling.classList.add("content-display");
+
+      //get movie videos
+      let path = `/movie/${movieID}videos`;
+      let url = generateURL(path);
+
+      const xhr = new XMLHttpRequest();
+      xhr.responseType = "json";
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          console.log(xhr.response);
+          // Search(xhr.response.results);
+          const videos = xhr.response.results;
+          const length = videos.length > 4 ? 4 : videos.length;
+          const iframeContainer = document.createElement("div");
+
+          for (let i = 0; i < length; i++) {
+            let iframe = createIframe(videos[i]);
+            iframeContainer.appendChild(iframe);
+            sibling.appendChild(iframeContainer);
+          }
+        }
+      };
+      xhr.open("GET", url);
+      xhr.send();
+    }
+    if (target.id === "content-close") {
+      let parent = target.parentElement;
+      parent.classList.remove("content-display");
+    }
+  };
 }
 function createMoviesContainer(movies) {
   const movieElement = document.createElement("div");
@@ -21,8 +62,8 @@ function createMoviesContainer(movies) {
     <section class="section">
     ${movieSectionInContainer(movies)}
     </section>
-    <div class="content">
-        <p id="content-close">X</p>
+    <div class="content ">
+      <p id="content-close">X</p>
     </div>
     `;
   movieElement.innerHTML = movieTemplate;
@@ -47,26 +88,40 @@ function Search(data) {
   moviesSearchable.appendChild(movieBlock);
 }
 
-function InputFieldSearch(){
-    const value = inputField.value;
-    inputField.value = "";
-    const url = urlBegin + API_KEY + "&query=" + value;
-    // fetch(url)
-    //   .then((res) => res.json())
-    //   .then(data => {
-    //     console.log(data);
-    //   })
-    //   .catch(error => {
-    //     console.log("error", error);
-    //   });
-    const xhr = new XMLHttpRequest();
-    xhr.responseType = "json";
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        console.log(xhr.response.results);
-        Search(xhr.response.results);
-      }
-    };
-    xhr.open("GET", url);
-    xhr.send();
+function InputFieldSearch() {
+  const value = inputField.value;
+  inputField.value = "";
+  let path = "/search/movie";
+  const url = generateURL(path) + "&query=" + value;
+  // fetch(url)
+  //   .then((res) => res.json())
+  //   .then(data => {
+  //     console.log(data);
+  //   })
+  //   .catch(error => {
+  //     console.log("error", error);
+  //   });
+  const xhr = new XMLHttpRequest();
+  xhr.responseType = "json";
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      console.log(xhr.response.results);
+      Search(xhr.response.results);
+    }
+  };
+  xhr.open("GET", url);
+  xhr.send();
+}
+function generateURL(path) {
+  let newURL = `https://api.themoviedb.org/3${path}?api_key=bbd92ee26b128295e6b83f95ab79c675`;
+  return newURL;
+}
+
+function createIframe(video) {
+  let iframe = document.createElement("iframe");
+  iframe.src = `https://www.youtube.com/embed/${video.key}`;
+  iframe.width = "360";
+  iframe.height = "315";
+  iframe.allowFullscreen = true;
+  return iframe;
 }

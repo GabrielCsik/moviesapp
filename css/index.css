@@ -43,3 +43,18 @@ img:hover{
 #movies-searchable{
     margin-top: 20px;
 }
+.content{
+    border: 1px solid red;
+    display: none;
+}
+.content-display{
+    display: block;
+}
+.content div {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 10px;
+
+}
