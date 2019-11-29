@@ -1,0 +1,45 @@
+#submitButton{
+    display:inline-block;
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+}
+#submitButton:hover{
+    color:#000000;
+    background-color:#FFFFFF;
+}
+
+@media all and (max-width:30em){
+     #submitButton{
+        display:block;
+        margin:0.4em auto;
+     }
+}
+section{
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    /* overflow: ; */
+    /* overflow: s; */
+}
+
+section img{
+    width: 300px;
+    transition: 250ms all;
+}
+img:hover{
+    margin-left: 0 40px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+#movies-searchable{
+    margin-top: 20px;
+}
