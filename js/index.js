@@ -30,17 +30,14 @@ function onDeviceReady() {
 
       //get movie videos
       let path = `/movie/${movieID}videos`;
+      let xpath2 = `/movie/${movieID}`;
+      var path2 = xpath2.substring(0, xpath2.length - 1);
       let url = generateURL(path);
+      let url2 = generateURL(path2);
+      dropDownInfo(url2, sibling);
+      dropDownInfoForVideo(url, sibling);
 
-      const xhr = new XMLHttpRequest();
-      xhr.responseType = "json";
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          createVideoTemplate(xhr.response, sibling);
-        }
-      };
-      xhr.open("GET", url);
-      xhr.send();
+      
     }
     if (target.id === "content-close") {
       let parent = target.parentElement;
@@ -137,4 +134,11 @@ function createVideoTemplate(data, sibling) {
     iframeContainer.appendChild(iframe);
     sibling.appendChild(iframeContainer);
   }
+}
+function createInfoTemplate(data, sibling){
+  console.log(data.original_title);
+  // const info = document.createElement("div");
+  const infoName = `<h2>${data.original_title}</h2>`;
+  sibling.innerHTML = infoName;
+  
 }
