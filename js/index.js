@@ -4,15 +4,19 @@ document.addEventListener("deviceready", onDeviceReady, false);
 const inputField = document.getElementById("inputField");
 const submitButton = document.getElementById("submitButton");
 const moviesSearchable = document.getElementById("movies-searchable");
+const moviesContainer = document.getElementById("movies-container");
 
 function onDeviceReady() {
+  
   submitButton.addEventListener("click", InputFieldSearch);
   inputField.addEventListener("keypress", function(e) {
     if (e.code === "Enter") {
       console.log("true");
     }
   });
-
+  getUpcomingMovies();
+  getPopularMovies();
+  getTopRatedMovies();
   document.onclick = function(e) {
     const target = e.target;
     if (target.tagName.toLowerCase() === "img") {
@@ -76,6 +80,12 @@ function Search(data) {
   const movies = data;
   const movieBlock = createMoviesContainer(movies);
   moviesSearchable.appendChild(movieBlock);
+}
+function Other(data) {
+  moviesSearchable.innerHTML = "";
+  const movies = data;
+  const movieBlock = createMoviesContainer(movies);
+  moviesContainer.appendChild(movieBlock);
 }
 
 function InputFieldSearch() {

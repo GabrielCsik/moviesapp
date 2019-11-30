@@ -20,3 +20,20 @@ function generateURL(path) {
     const url = generateURL(path) + "&query=" + value;
     requestMovies(url, Search);
   }
+  function getUpcomingMovies(){
+    let path = "/movie/upcoming";
+    const url = generateURL(path);
+    requestMovies(url, Other);
+  }
+
+  function getTopRatedMovies(){
+    let path = "/movie/top_rated";
+    const url = generateURL(path);
+    requestMovies(url, Other);
+  }
+  
+  function getPopularMovies(){
+    let path = "/movie/popular";
+    const url = generateURL(path);
+    requestMovies(url, Other);
+  }
