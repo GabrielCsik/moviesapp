@@ -1,20 +1,20 @@
-#submitButton{
-    display:inline-block;
-    padding:0.35em 1.2em;
-    border:0.1em solid #FFFFFF;
-    margin:0 0.3em 0.3em 0;
-    border-radius:0.12em;
-    box-sizing: border-box;
-    text-decoration:none;
-    font-family:'Roboto',sans-serif;
-    font-weight:300;
-    color:#FFFFFF;
-    text-align:center;
-    transition: all 0.2s;
+#submitButton {
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #ffffff;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.2s;
 }
-#submitButton:hover{
-    color:#000000;
-    background-color:#FFFFFF;
+#submitButton:hover {
+  color: #000000;
+  background-color: #ffffff;
 }
 
 /* @media all and (max-width:30em){
@@ -23,45 +23,70 @@
         margin:0.4em auto;
      }
 } */
-section{
-    display: flex;
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: auto;
-    /* overflow: ; */
-    /* overflow: s; */
+section {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+  /* overflow: ; */
+  /* overflow: s; */
 }
 
-section img{
-    width: 300px;
-    transition: 250ms all;
-    
+section img {
+  width: 175px;
+  transition: 250ms all;
 }
-img:hover{
-    margin-left: 0 40px;
-    transform: scale(1.2);
-    cursor: pointer;
+img:hover {
+  margin-left: 0 40px;
+  transform: scale(1.2);
+  cursor: pointer;
 }
-#movies-searchable{
-    margin-top: 20px;
+#movies-searchable {
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
-.content{
-    border: 1px solid red;
-    display: none;
+.content {
+  border: 1px solid red;
+  display: none;
 }
-.content-display{
-    display: block;
+.content-display {
+  display: block;
 }
 .content div {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 10px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px;
+}
+#content-close {
+  cursor: pointer;
+  margin: 10px;
+  float: right;
+  /* border: #000000 solid 1px; */
+}
 
+.movie {
+  margin-bottom: 30px;
 }
-#content-close{
-    cursor: pointer;
-   margin: 10px;
-   float: right;
+
+@media only screen and (min-width: 768px) {
+  section img {
+    width: 260px;
+    transition: 250ms all;
+  }
+  iframe{
+      width: 432px;
+      height: 270px;
+  }
 }
+@media only screen and (min-width: 1150px) {
+    section img {
+      width: 300px;
+      transition: 250ms all;
+    }
+    iframe{
+        width: 512px;
+        height: 320px;
+    }
+  }

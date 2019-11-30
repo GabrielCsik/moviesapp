@@ -7,16 +7,16 @@ const moviesSearchable = document.getElementById("movies-searchable");
 const moviesContainer = document.getElementById("movies-container");
 
 function onDeviceReady() {
-  
   submitButton.addEventListener("click", InputFieldSearch);
   inputField.addEventListener("keypress", function(e) {
     if (e.code === "Enter") {
       console.log("true");
     }
   });
-  getUpcomingMovies();
+  
   getPopularMovies();
   getTopRatedMovies();
+  getUpcomingMovies();
   document.onclick = function(e) {
     const target = e.target;
     if (target.tagName.toLowerCase() === "img") {
@@ -48,12 +48,13 @@ function onDeviceReady() {
     }
   };
 }
-function createMoviesContainer(movies) {
+function createMoviesContainer(movies, title = "") {
   const movieElement = document.createElement("div");
   movieElement.setAttribute("class", "movie");
 
-  const movieTemplate = `
-    <section class="section">
+  const movieTemplate = `  
+  <h2>${title}</h2>
+  <section class="section">
     ${movieSectionInContainer(movies)}
     </section>
     <div class="content ">
@@ -78,13 +79,13 @@ function movieSectionInContainer(movies) {
 function Search(data) {
   moviesSearchable.innerHTML = "";
   const movies = data;
-  const movieBlock = createMoviesContainer(movies);
+  const movieBlock = createMoviesContainer(movies, this.title);
   moviesSearchable.appendChild(movieBlock);
 }
 function Other(data) {
   moviesSearchable.innerHTML = "";
   const movies = data;
-  const movieBlock = createMoviesContainer(movies);
+  const movieBlock = createMoviesContainer(movies, this.title);
   moviesContainer.appendChild(movieBlock);
 }
 
@@ -114,12 +115,11 @@ function InputFieldSearch() {
   // xhr.send();
 }
 
-
 function createIframe(video) {
   let iframe = document.createElement("iframe");
   iframe.src = `https://www.youtube.com/embed/${video.key}`;
-  iframe.width = "360";
-  iframe.height = "315";
+  // iframe.width = "360";
+  // iframe.height = "225";
   iframe.allowFullscreen = true;
   return iframe;
 }
@@ -138,5 +138,3 @@ function createVideoTemplate(data, sibling) {
     sibling.appendChild(iframeContainer);
   }
 }
-
-
