@@ -83,6 +83,7 @@ function InputFieldSearch() {
   inputField.value = "";
   let path = "/search/movie";
   const url = generateURL(path) + "&query=" + value;
+  searchMovie(value);
   // fetch(url)
   //   .then((res) => res.json())
   //   .then(data => {
@@ -91,21 +92,18 @@ function InputFieldSearch() {
   //   .catch(error => {
   //     console.log("error", error);
   //   });
-  const xhr = new XMLHttpRequest();
-  xhr.responseType = "json";
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-      console.log(xhr.response.results);
-      Search(xhr.response.results);
-    }
-  };
-  xhr.open("GET", url);
-  xhr.send();
+  // const xhr = new XMLHttpRequest();
+  // xhr.responseType = "json";
+  // xhr.onreadystatechange = () => {
+  //   if (xhr.readyState === XMLHttpRequest.DONE) {
+  //     console.log(xhr.response.results);
+  //     Search(xhr.response.results);
+  //   }
+  // };
+  // xhr.open("GET", url);
+  // xhr.send();
 }
-function generateURL(path) {
-  let newURL = `https://api.themoviedb.org/3${path}?api_key=bbd92ee26b128295e6b83f95ab79c675`;
-  return newURL;
-}
+
 
 function createIframe(video) {
   let iframe = document.createElement("iframe");
@@ -131,6 +129,4 @@ function createVideoTemplate(data, sibling) {
   }
 }
 
-function requestMovies(url, onComplete, onError) {
-  
-}
+
