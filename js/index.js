@@ -32,17 +32,7 @@ function onDeviceReady() {
       xhr.responseType = "json";
       xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
-          console.log(xhr.response);
-          // Search(xhr.response.results);
-          const videos = xhr.response.results;
-          const length = videos.length > 4 ? 4 : videos.length;
-          const iframeContainer = document.createElement("div");
-
-          for (let i = 0; i < length; i++) {
-            let iframe = createIframe(videos[i]);
-            iframeContainer.appendChild(iframe);
-            sibling.appendChild(iframeContainer);
-          }
+          createVideoTemplate(xhr.response, sibling);
         }
       };
       xhr.open("GET", url);
@@ -124,4 +114,23 @@ function createIframe(video) {
   iframe.height = "315";
   iframe.allowFullscreen = true;
   return iframe;
+}
+
+function createVideoTemplate(data, sibling) {
+  console.log(data);
+  // Search(xhr.response.results);
+  sibling.innerHTML = `<p id="content-close">X</p>`;
+  const videos = data.results;
+  const length = videos.length > 4 ? 4 : videos.length;
+  const iframeContainer = document.createElement("div");
+
+  for (let i = 0; i < length; i++) {
+    let iframe = createIframe(videos[i]);
+    iframeContainer.appendChild(iframe);
+    sibling.appendChild(iframeContainer);
+  }
+}
+
+function requestMovies(url, onComplete, onError) {
+  
 }
