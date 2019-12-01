@@ -21,6 +21,12 @@ function searchMovie(value) {
   const render = Search.bind({ title: "Search Results" });
   requestMovies(url, render);
 }
+function searchTvShow(value) {
+  let path = "/search/tv";
+  const url = generateURL(path) + "&query=" + value;
+  const render = Search.bind({ title: "Search Results" });
+  requestMovies(url, render);
+}
 function getUpcomingMovies() {
   let path = "/movie/upcoming";
   const url = generateURL(path);
@@ -39,6 +45,24 @@ function getPopularMovies() {
   let path = "/movie/popular";
   const url = generateURL(path);
   const render = Other.bind({ title: "Most Popular Movies" });
+  requestMovies(url, render);
+}
+function getUpcomingTV() {
+  let path = "/tv/latest";
+  const url = generateURL(path);
+  const render = Other.bind({ title: "Latest TV" });
+  requestMovies(url, render);
+}
+function getTopRatedTV() {
+  let path = "/tv/top_rated";
+  const url = generateURL(path);
+  const render = Other.bind({ title: "Top Rated TV" });
+  requestMovies(url, render);
+}
+function getPopularTV() {
+  let path = "/tv/popular";
+  const url = generateURL(path);
+  const render = Other.bind({ title: "Most Popular TV" });
   requestMovies(url, render);
 }
 

@@ -1,3 +1,45 @@
+html{
+  font-family: "helvetica neue", sans-serif;
+}
+.nav{
+  border-bottom: 1px solid rgb(95, 95, 95);
+  text-align: right;
+  height: 70px;
+  line-height: 70px;
+  z-index: 1;
+  /* position: fixed; */
+}
+.menu{
+  margin: 0 40px 0 0;
+  text-align: center;
+  display: none;
+}
+.menu a{
+  clear: right;
+  text-decoration: none;
+  color: grey;
+  margin: 0 10px;
+  line-height: 70px;
+  cursor: pointer;
+  display: block;
+  border-bottom: 1px solid rgb(95, 95, 95);
+}
+label{
+  margin: 0 40px 0 0;
+  font-size: 26px;
+  line-height: 70px;
+  display: block;
+  cursor: pointer;
+  width: 26px;
+  float: right;
+}
+#toggle{
+  display: none;
+}
+#toggle:checked + .menu{
+  display: block;
+}
+
 #submitButton {
   display: inline-block;
   padding: 0.35em 1.2em;
@@ -48,6 +90,7 @@ img:hover {
 .content {
   border: 1px solid red;
   display: none;
+  /* height: 800px; */
 }
 .content-display {
   display: block;
@@ -69,8 +112,12 @@ img:hover {
 .movie {
   margin-bottom: 30px;
 }
+#tvShowDiv{
+  display: none;
+}
 
 @media only screen and (min-width: 768px) {
+  
   section img {
     width: 260px;
     transition: 250ms all;
@@ -79,6 +126,25 @@ img:hover {
       width: 432px;
       height: 270px;
   }
+  .menu{
+    margin: 0 30px 0 0;
+    display: block;
+    float: right;
+  }
+  .menu a{
+    clear: none;
+    text-decoration: none;
+    color: grey;
+    margin: 0 10px;
+    line-height: 70px;
+    cursor: pointer;
+    display: inline-block;
+    border-bottom: 0;
+  }
+  label{
+    
+    line-height: 70px;
+    display: none;
 }
 @media only screen and (min-width: 1150px) {
     section img {
@@ -90,3 +156,6 @@ img:hover {
         height: 320px;
     }
   }
+li{
+  cursor: pointer;
+}

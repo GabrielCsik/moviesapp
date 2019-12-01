@@ -5,8 +5,12 @@ const inputField = document.getElementById("inputField");
 const submitButton = document.getElementById("submitButton");
 const moviesSearchable = document.getElementById("movies-searchable");
 const moviesContainer = document.getElementById("movies-container");
+const tvshowButton = document.getElementById("tvshowButton");
+const movieButton = document.getElementById("movieButton");
 
 function onDeviceReady() {
+  tvshowButton.addEventListener('click', showTvShows);
+  movieButton.addEventListener('click', showMovies);
   submitButton.addEventListener("click", InputFieldSearch);
   inputField.addEventListener("keypress", function(e) {
     if (e.code === "Enter") {
@@ -17,6 +21,10 @@ function onDeviceReady() {
   getPopularMovies();
   getTopRatedMovies();
   getUpcomingMovies();
+  // getPopularTV();
+  // getTopRatedTV();
+  // getUpcomingTV();
+  
   document.onclick = function(e) {
     const target = e.target;
     if (target.tagName.toLowerCase() === "img") {
@@ -34,8 +42,8 @@ function onDeviceReady() {
       var path2 = xpath2.substring(0, xpath2.length - 1);
       let url = generateURL(path);
       let url2 = generateURL(path2);
-      dropDownInfo(url2, sibling);
       dropDownInfoForVideo(url, sibling);
+      // dropDownInfo(url2, sibling);
 
       
     }
@@ -89,28 +97,18 @@ function Other(data) {
 function InputFieldSearch() {
   const value = inputField.value;
   inputField.value = "";
-  let path = "/search/movie";
-  const url = generateURL(path) + "&query=" + value;
+  // let path = "/search/movie";
+  // const url = generateURL(path) + "&query=" + value;
   searchMovie(value);
-  // fetch(url)
-  //   .then((res) => res.json())
-  //   .then(data => {
-  //     console.log(data);
-  //   })
-  //   .catch(error => {
-  //     console.log("error", error);
-  //   });
-  // const xhr = new XMLHttpRequest();
-  // xhr.responseType = "json";
-  // xhr.onreadystatechange = () => {
-  //   if (xhr.readyState === XMLHttpRequest.DONE) {
-  //     console.log(xhr.response.results);
-  //     Search(xhr.response.results);
-  //   }
-  // };
-  // xhr.open("GET", url);
-  // xhr.send();
+  searchTvShow(value);
 }
+// function InputFieldSearch2() {
+//   const value = inputField.value;
+//   inputField.value = "";
+//   let path = "/search/movie";
+//   const url = generateURL(path) + "&query=" + value;
+//   searchMovie(value);
+// }
 
 function createIframe(video) {
   let iframe = document.createElement("iframe");
@@ -136,9 +134,25 @@ function createVideoTemplate(data, sibling) {
   }
 }
 function createInfoTemplate(data, sibling){
-  console.log(data.original_title);
+  console.log(data);
+  sibling.innerHTML = `<p id="content-close">X</p>`;
   // const info = document.createElement("div");
-  const infoName = `<h2>${data.original_title}</h2>`;
-  sibling.innerHTML = infoName;
+  const infoName =
+  `<h2>${data.original_title}</h2>
+  <p>Overview: ${data.overview}</p>
+  <p>Rating: ${data.vote_average}</p>
+  <p>Release date: ${data.release_date}</p>
+  <p>Runtime: ${data.runtime} min</p>`;
+  sibling.innerHTML += infoName;
   
+}
+
+function showTvShows(){
+  document.getElementById('movieDiv').style.display = "none";
+  document.getElementById('tvShowDiv').style.display = "block";
+}
+function showMovies(){
+  document.getElementById('movieDiv').style.display = "block";
+  document.getElementById('tvShowDiv').style.display = "none";
+
 }

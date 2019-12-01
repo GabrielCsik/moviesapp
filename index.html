@@ -16,12 +16,20 @@
     <title>Movies App</title>
   </head>
   <body>
-    <h1>My app to find movies</h1>
-    <input type="text" id="inputField" placeholder="Enter movie"/>
-    <button id="submitButton" >Submit</button>
-    <div id="movies-searchable">   
+    <div class="nav">
+      <label for="toggle">&#9776</label>
+      <input type="checkbox"  id="toggle">
+      <div class="menu">
+        <a id="movieButton">Movies</a>
+        <a id="tvshowButton">TV Shows</a>
+      </div>
     </div>
-    <div id="movies-container">   
+    <h1>My app to find movies</h1>
+    <input type="text" id="inputField" placeholder="Search..." />
+    <button id="submitButton">Submit</button>
+        <div id="movieDiv">
+      <div id="movies-searchable"></div>
+      <div id="movies-container"></div>
     </div>
 
     <script type="text/javascript" src="cordova.js"></script>
