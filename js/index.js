@@ -18,12 +18,12 @@ function onDeviceReady() {
     }
   });
   
-  getPopularMovies();
-  getTopRatedMovies();
-  getUpcomingMovies();
-  // getPopularTV();
-  // getTopRatedTV();
-  // getUpcomingTV();
+  // getPopularMovies();
+  // getTopRatedMovies();
+  // getUpcomingMovies();
+  getPopularTV();
+  getTopRatedTV();
+  getUpcomingTV();
   
   document.onclick = function(e) {
     const target = e.target;

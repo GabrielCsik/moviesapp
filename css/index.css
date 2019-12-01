@@ -1,4 +1,4 @@
-html{
+body{
   font-family: "helvetica neue", sans-serif;
 }
 #inputField{
@@ -19,13 +19,14 @@ html{
   text-align: right;
   height: 70px;
   line-height: 70px;
-  z-index: 1;
+  /* z-index: 1; */
   /* position: fixed; */
 }
 .menu{
   margin: 0 40px 0 0;
   text-align: center;
   display: none;
+  /* z-index: 1; */
 }
 .menu a{
   clear: right;
@@ -36,6 +37,8 @@ html{
   cursor: pointer;
   display: block;
   border-bottom: 1px solid rgb(95, 95, 95);
+  /* background-color: black; */
+  
 }
 label{
   margin: 0 40px 0 0;
@@ -56,7 +59,7 @@ label{
 #submitButton {
   border: 2px solid #aaa;
   background: none;
-  padding: 8px 16px;
+  padding: 6px 16px;
   font-size: 18px;
   border-radius: 5px;
   font-family: "montserrat";
@@ -64,12 +67,15 @@ label{
   margin: 10px;
   transition: 0.5s;
   margin: auto;
+  width: 100%;
+  background-color: dodgerblue;
+  color: white;
   /* width: 50%; */
 }
 #submitButton:hover {
   border-color: dodgerblue;
   box-shadow: 0 0 8px 0 dodgerblue;
-  color: dodgerblue;
+  color: white;
   font-weight: bold;
 }
 
@@ -163,6 +169,9 @@ img:hover {
     line-height: 70px;
     display: none;
 }
+#submitButton{
+  width: 18%;
+}
 @media only screen and (min-width: 1150px) {
     section img {
       width: 300px;
@@ -172,7 +181,7 @@ img:hover {
         width: 512px;
         height: 320px;
     }
+    #submitButton{
+      width: 12%;
+    }
   }
-li{
-  cursor: pointer;
-}
