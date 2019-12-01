@@ -28,6 +28,9 @@ body{
   display: none;
   /* z-index: 1; */
 }
+h2{
+  margin-top: 0;
+}
 .menu a{
   clear: right;
   text-decoration: none;
@@ -108,8 +111,10 @@ img:hover {
   margin-bottom: 30px;
 }
 .content {
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  background-color: rgb(228, 228, 228);
   display: none;
+  padding: 20px 0 20px 0;
   /* height: 800px; */
 }
 .content-display {

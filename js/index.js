@@ -9,22 +9,22 @@ const tvshowButton = document.getElementById("tvshowButton");
 const movieButton = document.getElementById("movieButton");
 
 function onDeviceReady() {
-  tvshowButton.addEventListener('click', showTvShows);
-  movieButton.addEventListener('click', showMovies);
+  tvshowButton.addEventListener("click", showTvShows);
+  movieButton.addEventListener("click", showMovies);
   submitButton.addEventListener("click", InputFieldSearch);
   inputField.addEventListener("keypress", function(e) {
     if (e.code === "Enter") {
       console.log("true");
     }
   });
-  
-  // getPopularMovies();
-  // getTopRatedMovies();
-  // getUpcomingMovies();
-  getPopularTV();
-  getTopRatedTV();
-  getUpcomingTV();
-  
+
+  getPopularMovies();
+  getTopRatedMovies();
+  getUpcomingMovies();
+  // getPopularTV();
+  // getTopRatedTV();
+  // getUpcomingTV();
+
   document.onclick = function(e) {
     const target = e.target;
     if (target.tagName.toLowerCase() === "img") {
@@ -44,8 +44,6 @@ function onDeviceReady() {
       let url2 = generateURL(path2);
       dropDownInfoForVideo(url, sibling);
       // dropDownInfo(url2, sibling);
-
-      
     }
     if (target.id === "content-close") {
       let parent = target.parentElement;
@@ -100,7 +98,7 @@ function InputFieldSearch() {
   // let path = "/search/movie";
   // const url = generateURL(path) + "&query=" + value;
   searchMovie(value);
-  searchTvShow(value);
+  // searchTvShow(value);
 }
 // function InputFieldSearch2() {
 //   const value = inputField.value;
@@ -133,26 +131,29 @@ function createVideoTemplate(data, sibling) {
     sibling.appendChild(iframeContainer);
   }
 }
-function createInfoTemplate(data, sibling){
+function createInfoTemplate(data, sibling) {
   console.log(data);
   sibling.innerHTML = `<p id="content-close">X</p>`;
   // const info = document.createElement("div");
-  const infoName =
-  `<h2>${data.original_title}</h2>
+  const infoName = `<h2>${data.original_title}</h2>
   <p>Overview: ${data.overview}</p>
   <p>Rating: ${data.vote_average}</p>
   <p>Release date: ${data.release_date}</p>
   <p>Runtime: ${data.runtime} min</p>`;
   sibling.innerHTML += infoName;
-  
 }
 
-function showTvShows(){
-  document.getElementById('movieDiv').style.display = "none";
-  document.getElementById('tvShowDiv').style.display = "block";
+function showTvShows() {
+  moviesSearchable.innerHTML = "";
+  moviesContainer.innerHTML = "";
+  getPopularTV();
+  getTopRatedTV();
+  getUpcomingTV();
 }
-function showMovies(){
-  document.getElementById('movieDiv').style.display = "block";
-  document.getElementById('tvShowDiv').style.display = "none";
-
+function showMovies() {
+  moviesSearchable.innerHTML = "";
+  moviesContainer.innerHTML = "";
+  getPopularMovies();
+  getTopRatedMovies();
+  getUpcomingMovies();
 }
