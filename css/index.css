@@ -1,6 +1,19 @@
 html{
   font-family: "helvetica neue", sans-serif;
 }
+#inputField{
+  width: 100%;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+}
+#inputField:focus{
+  border-color: dodgerblue;
+  box-shadow: 0 0 8px 0 dodgerblue;
+}
 .nav{
   border-bottom: 1px solid rgb(95, 95, 95);
   text-align: right;
@@ -41,22 +54,23 @@ label{
 }
 
 #submitButton {
-  display: inline-block;
-  padding: 0.35em 1.2em;
-  border: 0.1em solid #ffffff;
-  margin: 0 0.3em 0.3em 0;
-  border-radius: 0.12em;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  color: #ffffff;
-  text-align: center;
-  transition: all 0.2s;
+  border: 2px solid #aaa;
+  background: none;
+  padding: 8px 16px;
+  font-size: 18px;
+  border-radius: 5px;
+  font-family: "montserrat";
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.5s;
+  margin: auto;
+  /* width: 50%; */
 }
 #submitButton:hover {
-  color: #000000;
-  background-color: #ffffff;
+  border-color: dodgerblue;
+  box-shadow: 0 0 8px 0 dodgerblue;
+  color: dodgerblue;
+  font-weight: bold;
 }
 
 /* @media all and (max-width:30em){
@@ -118,6 +132,9 @@ img:hover {
 
 @media only screen and (min-width: 768px) {
   
+  #inputField{
+    width: 70%;
+  }
   section img {
     width: 260px;
     transition: 250ms all;
