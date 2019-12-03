@@ -7,7 +7,7 @@ const moviesSearchable = document.getElementById("movies-searchable");
 const moviesContainer = document.getElementById("movies-container");
 const tvshowButton = document.getElementById("tvshowButton");
 const movieButton = document.getElementById("movieButton");
-var movieOrserial = 'movie';
+var movieOrserial = "movie";
 
 function onDeviceReady() {
   tvshowButton.addEventListener("click", showTvShows);
@@ -43,7 +43,7 @@ function onDeviceReady() {
       var path2 = xpath2.substring(0, xpath2.length - 1);
       let url = generateURL(path);
       let url2 = generateURL(path2);
-      dropDownInfoForVideo(url, sibling);
+      // dropDownInfoForVideo(url, sibling);
       dropDownInfo(url2, sibling);
     }
     if (target.id === "content-close") {
@@ -98,10 +98,9 @@ function InputFieldSearch() {
   inputField.value = "";
   // let path = "/search/movie";
   // const url = generateURL(path) + "&query=" + value;
-  if(movieOrserial ==="movie"){
-  searchMovie(value);
-  }
-  else{
+  if (movieOrserial === "movie") {
+    searchMovie(value);
+  } else {
     searchTvShow(value);
   }
   // searchTvShow(value);
@@ -138,15 +137,28 @@ function createVideoTemplate(data, sibling) {
   }
 }
 function createInfoTemplate(data, sibling) {
-  console.log(data);
-  sibling.innerHTML = `<p id="content-close">X</p>`;
-  // const info = document.createElement("div");
-  const infoName = `<h2>${data.original_title}</h2>
+  if (movieOrserial === "movie") {
+    console.log(data);
+    sibling.innerHTML = `<p id="content-close">X</p>`;
+    // const info = document.createElement("div");
+    var infoName = `<h2>${data.original_title}</h2>
   <p>Overview: ${data.overview}</p>
   <p>Rating: ${data.vote_average}</p>
   <p>Release date: ${data.release_date}</p>
   <p>Runtime: ${data.runtime} min</p>`;
-  sibling.innerHTML += infoName;
+    sibling.innerHTML += infoName;
+  }else{
+    sibling.innerHTML = `<p id="content-close">X</p>`;
+    console.log(data);
+    var infoName = `<h2>${data.original_name}</h2>
+    <p>Overview: ${data.overview}</p>
+    <p>Rating: ${data.vote_average}</p>
+    <p>First air date: ${data.first_air_date}</p>
+    <p>Last episode to air: ${data.last_episode_to_air.air_date}</p>
+    <p>Number of seasons: ${data.number_of_seasons}</p>
+    <p>Number of episodes: ${data.number_of_episodes}</p>`;
+      sibling.innerHTML += infoName;
+  }
 }
 
 function showTvShows() {
@@ -155,8 +167,7 @@ function showTvShows() {
   getPopularTV();
   getTopRatedTV();
   getUpcomingTV();
-  movieOrserial = 'tv';
-
+  movieOrserial = "tv";
 }
 function showMovies() {
   moviesSearchable.innerHTML = "";
@@ -164,6 +175,5 @@ function showMovies() {
   getPopularMovies();
   getTopRatedMovies();
   getUpcomingMovies();
-  movieOrserial = 'movie';
-
+  movieOrserial = "movie";
 }
