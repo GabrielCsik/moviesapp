@@ -7,6 +7,7 @@ const moviesSearchable = document.getElementById("movies-searchable");
 const moviesContainer = document.getElementById("movies-container");
 const tvshowButton = document.getElementById("tvshowButton");
 const movieButton = document.getElementById("movieButton");
+var movieOrserial = 'movie';
 
 function onDeviceReady() {
   tvshowButton.addEventListener("click", showTvShows);
@@ -37,13 +38,13 @@ function onDeviceReady() {
       sibling.classList.add("content-display");
 
       //get movie videos
-      let path = `/movie/${movieID}videos`;
-      let xpath2 = `/movie/${movieID}`;
+      let path = `/${movieOrserial}/${movieID}videos`;
+      let xpath2 = `/${movieOrserial}/${movieID}`;
       var path2 = xpath2.substring(0, xpath2.length - 1);
       let url = generateURL(path);
       let url2 = generateURL(path2);
       dropDownInfoForVideo(url, sibling);
-      // dropDownInfo(url2, sibling);
+      dropDownInfo(url2, sibling);
     }
     if (target.id === "content-close") {
       let parent = target.parentElement;
@@ -97,7 +98,12 @@ function InputFieldSearch() {
   inputField.value = "";
   // let path = "/search/movie";
   // const url = generateURL(path) + "&query=" + value;
+  if(movieOrserial ==="movie"){
   searchMovie(value);
+  }
+  else{
+    searchTvShow(value);
+  }
   // searchTvShow(value);
 }
 // function InputFieldSearch2() {
@@ -149,6 +155,8 @@ function showTvShows() {
   getPopularTV();
   getTopRatedTV();
   getUpcomingTV();
+  movieOrserial = 'tv';
+
 }
 function showMovies() {
   moviesSearchable.innerHTML = "";
@@ -156,4 +164,6 @@ function showMovies() {
   getPopularMovies();
   getTopRatedMovies();
   getUpcomingMovies();
+  movieOrserial = 'movie';
+
 }
