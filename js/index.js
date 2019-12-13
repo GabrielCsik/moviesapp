@@ -13,6 +13,10 @@ var overview = "Overview";
 var rating = "Rating";
 var release_date = "Release date";
 var runtime = "Runtime";
+var NoS = "Number of Seasons";
+var NoE = "Number of Episodes";
+var lastEp = "Last Episode to Air";
+var firstEp = "First Air Date";
 
 function onDeviceReady() {
   tvshowButton.addEventListener("click", showTvShows);
@@ -157,12 +161,12 @@ function createInfoTemplate(data, sibling) {
     sibling.innerHTML = `<p id="content-close">X</p>`;
     console.log(data);
     var infoName = `<h2>${data.original_name}</h2>
-    <p>Overview: ${data.overview}</p>
-    <p>Rating: ${data.vote_average}</p>
-    <p>First air date: ${data.first_air_date}</p>
-    <p>Last episode to air: ${data.last_episode_to_air.air_date}</p>
-    <p>Number of seasons: ${data.number_of_seasons}</p>
-    <p>Number of episodes: ${data.number_of_episodes}</p>`;
+    <p>${overview}: ${data.overview}</p>
+    <p>${rating}: ${data.vote_average}</p>
+    <p>${firstEp}: ${data.first_air_date}</p>
+    <p>${lastEp}: ${data.last_episode_to_air.air_date}</p>
+    <p>${NoS}: ${data.number_of_seasons}</p>
+    <p>${NoE}: ${data.number_of_episodes}</p>`;
     sibling.innerHTML += infoName;
   }
 }
@@ -191,12 +195,20 @@ function changeLanguage() {
     rating = "Hodnotenie";
     release_date = "Dátum vydania";
     runtime = "Dlžka";
+    NoS = "Počet sezón";
+    NoE = "Počet častí";
+    lastEp = "Posledná epizóda na vyslanie";
+    firstEp = "Prvý dátum vysielania";
   } else {
     language.innerText = "SK";
     overview = "Overview";
     rating = "Rating";
     release_date = "Release date";
     runtime = "Runtime";
+    NoS = "Number of Seasons";
+    NoE = "Number of Episodes";
+    lastEp = "Last Episode to Air";
+    firstEp = "First Air Date";
   }
   if (movieOrserial === "movie") {
     showMovies();
