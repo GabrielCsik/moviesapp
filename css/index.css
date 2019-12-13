@@ -1,6 +1,9 @@
 body{
   font-family: "helvetica neue", sans-serif;
 }
+h1{
+  color: red;
+}
 #inputField{
   width: 100%;
   border: 2px solid #aaa;
@@ -177,6 +180,7 @@ img:hover {
 #submitButton{
   width: 18%;
 }
+}
 @media only screen and (min-width: 1150px) {
     section img {
       width: 300px;
@@ -189,4 +193,4 @@ img:hover {
     #submitButton{
       width: 12%;
     }
-  }
+}

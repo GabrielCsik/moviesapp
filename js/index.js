@@ -7,11 +7,17 @@ const moviesSearchable = document.getElementById("movies-searchable");
 const moviesContainer = document.getElementById("movies-container");
 const tvshowButton = document.getElementById("tvshowButton");
 const movieButton = document.getElementById("movieButton");
+const language = document.getElementById("language");
 var movieOrserial = "movie";
+var overview = "Overview";
+var rating = "Rating";
+var release_date = "Release date";
+var runtime = "Runtime";
 
 function onDeviceReady() {
   tvshowButton.addEventListener("click", showTvShows);
   movieButton.addEventListener("click", showMovies);
+  language.addEventListener("click", changeLanguage);
   submitButton.addEventListener("click", InputFieldSearch);
   inputField.addEventListener("keypress", function(e) {
     if (e.code === "Enter") {
@@ -142,12 +148,12 @@ function createInfoTemplate(data, sibling) {
     sibling.innerHTML = `<p id="content-close">X</p>`;
     // const info = document.createElement("div");
     var infoName = `<h2>${data.original_title}</h2>
-  <p>Overview: ${data.overview}</p>
-  <p>Rating: ${data.vote_average}</p>
-  <p>Release date: ${data.release_date}</p>
-  <p>Runtime: ${data.runtime} min</p>`;
+  <p>${overview}: ${data.overview}</p>
+  <p>${rating}: ${data.vote_average}</p>
+  <p>${release_date}: ${data.release_date}</p>
+  <p>${runtime}: ${data.runtime} min</p>`;
     sibling.innerHTML += infoName;
-  }else{
+  } else {
     sibling.innerHTML = `<p id="content-close">X</p>`;
     console.log(data);
     var infoName = `<h2>${data.original_name}</h2>
@@ -157,7 +163,7 @@ function createInfoTemplate(data, sibling) {
     <p>Last episode to air: ${data.last_episode_to_air.air_date}</p>
     <p>Number of seasons: ${data.number_of_seasons}</p>
     <p>Number of episodes: ${data.number_of_episodes}</p>`;
-      sibling.innerHTML += infoName;
+    sibling.innerHTML += infoName;
   }
 }
 
@@ -176,4 +182,25 @@ function showMovies() {
   getTopRatedMovies();
   getUpcomingMovies();
   movieOrserial = "movie";
+}
+
+function changeLanguage() {
+  if (language.innerText === "SK") {
+    language.innerText = "EN";
+    overview = "Prehľad";
+    rating = "Hodnotenie";
+    release_date = "Dátum vydania";
+    runtime = "Dlžka";
+  } else {
+    language.innerText = "SK";
+    overview = "Overview";
+    rating = "Rating";
+    release_date = "Release date";
+    runtime = "Runtime";
+  }
+  if (movieOrserial === "movie") {
+    showMovies();
+  } else {
+    showTvShows();
+  }
 }
