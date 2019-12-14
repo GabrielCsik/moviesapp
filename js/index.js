@@ -10,6 +10,7 @@ const tvshowButton = document.getElementById("tvshowButton");
 const movieButton = document.getElementById("movieButton");
 const language = document.getElementById("language");
 const historyButton = document.getElementById("historyButton");
+const title = document.getElementById("title");
 var movieOrserial = "movie";
 var overview = "Overview";
 var rating = "Rating";
@@ -217,6 +218,7 @@ function showMovies() {
 
 function changeLanguage() {
   if (language.innerText === "SK") {
+    title.innerHTML = "Moja Applikacia na Hladanie Filmov a TV Serialov";
     language.innerText = "EN";
     overview = "Prehľad";
     rating = "Hodnotenie";
@@ -227,6 +229,7 @@ function changeLanguage() {
     lastEp = "Posledná epizóda na vyslanie";
     firstEp = "Prvý dátum vysielania";
   } else {
+    title.innerHTML = "My App to Find Movies and TV Shows";
     language.innerText = "SK";
     overview = "Overview";
     rating = "Rating";
