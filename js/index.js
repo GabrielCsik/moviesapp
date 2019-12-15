@@ -43,7 +43,7 @@ function onDeviceReady() {
       var path2 = xpath2.substring(0, xpath2.length - 1);
       let url = generateURL(path);
       let url2 = generateURL(path2);
-      // dropDownInfoForVideo(url, sibling);
+      dropDownInfoForVideo(url, sibling);
       dropDownInfo(url2, sibling);
     }
     if (target.id === "content-close") {
