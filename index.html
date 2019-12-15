@@ -16,7 +16,18 @@
     <title>Movies App</title>
   </head>
   <body>
-    <div class="nav">
+    <nav>
+      <input type="checkbox"  id="check">
+      <label for="check" class="checkbtn">&#9776</label>
+      <label class="logo">M&TV</label>
+      <ul>
+        <li><a id="movieButton">Movies</a></li>
+        <li><a id="tvshowButton">TV Shows</a></li>
+        <li><a id="historyButton">History</a></li>
+        <li><a id="language">SK</a></li>
+      </ul>
+    </nav>
+    <!-- <div class="nav">
       <label for="toggle">&#9776</label>
       <input type="checkbox"  id="toggle">
       <div class="menu">
@@ -25,14 +36,13 @@
         <a id="historyButton">History</a>
         <a id="language">SK</a>
       </div>
-    </div>
-    <h1 id="title">My App to Find Movies and TV Shows</h1>
-    
-    
+    </div> -->
+    <!-- <h1 id="title">My App to Find Movies and TV Shows</h1> -->
+
     <div id="search">
-    <input type="text" id="inputField" placeholder="Search..." />
-    <button id="submitButton">Submit</button>
-    <button id="deleteButton" style="display: none;">Delete</button>
+      <input type="text" id="inputField" placeholder="Search..." />
+      <button id="submitButton">Submit</button>
+      <button id="deleteButton" style="display: none;">Delete</button>
       <div id="movies-searchable"></div>
       <div id="movies-container"></div>
     </div>
