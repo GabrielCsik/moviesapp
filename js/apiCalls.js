@@ -21,10 +21,22 @@ function searchMovie(value) {
   const render = Search.bind({ title: "Search Results" });
   requestMovies(url, render);
 }
+function searchMovieHistory(value) {
+  let path = "/search/movie";
+  const url = generateURL(path) + "&query=" + value;
+  const render = SearchHistory.bind({ title: "Search: " + value });
+  requestMovies(url, render);
+}
 function searchTvShow(value) {
   let path = "/search/tv";
   const url = generateURL(path) + "&query=" + value;
   const render = Search.bind({ title: "Search Results" });
+  requestMovies(url, render);
+}
+function searchTvShowHistory(value) {
+  let path = "/search/tv";
+  const url = generateURL(path) + "&query=" + value;
+  const render = SearchHistory.bind({ title: "Search: " + value });
   requestMovies(url, render);
 }
 function getUpcomingMovies() {
