@@ -172,7 +172,7 @@ function createInfoTemplate(data, sibling) {
     console.log(data);
     sibling.innerHTML = `<p id="content-close">X</p>`;
     // const info = document.createElement("div");
-    var infoName = `<h2>${data.original_title}</h2>
+    var infoName = `<h3>${data.original_title}</h3>
   <p>${overview}: ${data.overview}</p>
   <p>${rating}: ${data.vote_average}/10</p>
   <p>${release_date}: ${data.release_date}</p>
@@ -181,7 +181,7 @@ function createInfoTemplate(data, sibling) {
   } else {
     sibling.innerHTML = `<p id="content-close">X</p>`;
     console.log(data);
-    var infoName = `<h2>${data.original_name}</h2>
+    var infoName = `<h3>${data.original_name}</h3>
     <p>${overview}: ${data.overview}</p>
     <p>${rating}: ${data.vote_average}</p>
     <p>${firstEp}: ${data.first_air_date}</p>
@@ -218,7 +218,7 @@ function showMovies() {
 
 function changeLanguage() {
   if (language.innerText === "SK") {
-    title.innerHTML = "Moja Applikacia na Hladanie Filmov a TV Serialov";
+    // title.innerHTML = "Moja Applikacia na Hladanie Filmov a TV Serialov";
     language.innerText = "EN";
     overview = "Prehľad";
     rating = "Hodnotenie";
@@ -229,7 +229,7 @@ function changeLanguage() {
     lastEp = "Posledná epizóda na vyslanie";
     firstEp = "Prvý dátum vysielania";
   } else {
-    title.innerHTML = "My App to Find Movies and TV Shows";
+    // title.innerHTML = "My App to Find Movies and TV Shows";
     language.innerText = "SK";
     overview = "Overview";
     rating = "Rating";
