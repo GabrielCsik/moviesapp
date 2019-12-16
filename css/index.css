@@ -100,7 +100,7 @@ p{
   color: white;
   font-weight: bold;
 }
-#submitButton {
+#submitButton, #btn {
   border: 2px solid #aaa;
   background: none;
   padding: 6px 16px;

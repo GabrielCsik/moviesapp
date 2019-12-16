@@ -30,6 +30,7 @@ function onDeviceReady() {
   language.addEventListener("click", changeLanguage);
   submitButton.addEventListener("click", InputFieldSearch);
   historyButton.addEventListener('click', showHistory);
+  document.getElementById('btn').addEventListener('click', takephoto);
   // inputField.addEventListener("keypress", function(e) {
     // localStorage.setItem("yes", "nice");
     // let val = localStorage.getItem("yes");
@@ -63,7 +64,7 @@ function onDeviceReady() {
       var path2 = xpath2.substring(0, xpath2.length - 1);
       let url = generateURL(path);
       let url2 = generateURL(path2);
-      dropDownInfoForVideo(url, sibling);
+      // dropDownInfoForVideo(url, sibling);
       dropDownInfo(url2, sibling);
     }
     if (target.id === "content-close") {
@@ -279,4 +280,25 @@ function showHistory(){
   //   console.log(history[i]);
   //   searchMovieHistory(history[i]);
   // }
+}
+function takephoto(){
+  let opts = {
+    quality: 80,
+    destinationType: Camera.DestinationType.FILE_URI,
+    sourceType: Camera.PictureSourceType.CAMERA,
+    mediaType: Camera.MediaType.PICTURE,
+    encodingType: Camera.EncodingType.JPEG,
+    cameraDirection: Camera.Direction.BACK,
+    targetWidth: 300,
+    targetHeight: 400
+};
+
+navigator.camera.getPicture(ftw, wtf, opts);
+}
+function ftw(imgURI){
+  document.getElementById('msg').textContent = imgURI;
+  document.getElementById('photo').src = imgURI;
+}
+function wtf(msg){
+  document.getElementById('msg').textContent = msg;
 }
