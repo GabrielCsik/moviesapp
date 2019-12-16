@@ -21,20 +21,27 @@ var NoE = "Number of Episodes";
 var lastEp = "Last Episode to Air";
 var firstEp = "First Air Date";
 var history;
-// const history;
+var searchResults = "Search Results: ";
+var mostPopular = "Most popular movies";
+var topRated = "Top rated movies";
+var Upcoming = "Most popular movies";
+var mostPopularTV = "Most popular tv shows";
+var topRatedTV = "Top rated tv shows";
+var UpcomingTV = "Upcoming TV shows ";
 
+// const history;
 
 function onDeviceReady() {
   tvshowButton.addEventListener("click", showTvShows);
   movieButton.addEventListener("click", showMovies);
   language.addEventListener("click", changeLanguage);
   submitButton.addEventListener("click", InputFieldSearch);
-  historyButton.addEventListener('click', showHistory);
-  document.getElementById('btn').addEventListener('click', takephoto);
+  historyButton.addEventListener("click", showHistory);
+  document.getElementById("btn").addEventListener("click", takephoto);
   // inputField.addEventListener("keypress", function(e) {
-    // localStorage.setItem("yes", "nice");
-    // let val = localStorage.getItem("yes");
-    // console.log(val);
+  // localStorage.setItem("yes", "nice");
+  // let val = localStorage.getItem("yes");
+  // console.log(val);
   //   if (e.code === "Enter") {
   //     console.log("true");
   //   }
@@ -122,12 +129,11 @@ function Other(data) {
 function InputFieldSearch() {
   const value = inputField.value;
   inputField.value = "";
-   
+
   localStorage.setItem(value, movieOrserial);
   // console.log(localStorage.getItem(value));
   // console.log(history);
-  
-  
+
   // let path = "/search/movie";
   // const url = generateURL(path) + "&query=" + value;
   if (movieOrserial === "movie") {
@@ -199,7 +205,7 @@ function showTvShows() {
   inputField.style.display = "block";
   submitButton.style.display = "block";
   deleteButton.style.display = "none";
-  
+
   getPopularTV();
   getTopRatedTV();
   getUpcomingTV();
@@ -216,7 +222,9 @@ function showMovies() {
   getUpcomingMovies();
   movieOrserial = "movie";
 }
-
+//LANGUAGE
+//
+//
 function changeLanguage() {
   if (language.innerText === "SK") {
     // title.innerHTML = "Moja Applikacia na Hladanie Filmov a TV Serialov";
@@ -229,6 +237,13 @@ function changeLanguage() {
     NoE = "Počet častí";
     lastEp = "Posledná epizóda na vyslanie";
     firstEp = "Prvý dátum vysielania";
+    searchResults = "Výsledok vyhladavania: ";
+    mostPopular = "Najpopularnejšie filmy";
+    topRated = "Najlepšie hodnotené filmy";
+    Upcoming = "Zachvilku v kinách";
+    mostPopularTV = "Najpopularnejšie TV serialy";
+    topRatedTV = "Najlepšie hodnotené TV serialy";
+    UpcomingTV = "Najnovšie TV serialy";
   } else {
     // title.innerHTML = "My App to Find Movies and TV Shows";
     language.innerText = "SK";
@@ -240,6 +255,13 @@ function changeLanguage() {
     NoE = "Number of Episodes";
     lastEp = "Last Episode to Air";
     firstEp = "First Air Date";
+    searchResults = "Search Results: ";
+    mostPopular = "Most popular movies";
+    topRated = "Top rated movies";
+    Upcoming = "Most popular movies";
+    mostPopularTV = "Most popular tv shows";
+    topRatedTV = "Top rated tv shows";
+    UpcomingTV = "Latest TV shows ";
   }
   if (movieOrserial === "movie") {
     showMovies();
@@ -248,30 +270,28 @@ function changeLanguage() {
   }
 }
 function allStorage() {
-
   var values = [],
-      keys = Object.keys(localStorage),
-      i = keys.length;
+    keys = Object.keys(localStorage),
+    i = keys.length;
 
-  while ( i-- ) {
-      values.push( localStorage.getItem(keys[i]) );
-      if(localStorage.getItem(keys[i]) === "movie"){
+  while (i--) {
+    values.push(localStorage.getItem(keys[i]));
+    if (localStorage.getItem(keys[i]) === "movie") {
       searchMovieHistory(localStorage.key(i));
-      }else{
-        searchTvShowHistory(localStorage.key(i));
-      }
-      console.log(localStorage.key(i));
+    } else {
+      searchTvShowHistory(localStorage.key(i));
+    }
+    console.log(localStorage.key(i));
   }
-  
 }
-function showHistory(){
+function showHistory() {
   moviesSearchable.innerHTML = "";
   moviesContainer.innerHTML = "";
   inputField.style.display = "none";
   submitButton.style.display = "none";
   deleteButton.style.display = "block";
   allStorage();
-  deleteButton.addEventListener('click', function(){
+  deleteButton.addEventListener("click", function() {
     localStorage.clear();
     moviesSearchable.innerHTML = "";
     moviesContainer.innerHTML = "";
@@ -281,7 +301,7 @@ function showHistory(){
   //   searchMovieHistory(history[i]);
   // }
 }
-function takephoto(){
+function takephoto() {
   let opts = {
     quality: 80,
     destinationType: Camera.DestinationType.FILE_URI,
@@ -291,14 +311,122 @@ function takephoto(){
     cameraDirection: Camera.Direction.BACK,
     targetWidth: 300,
     targetHeight: 400
-};
+  };
 
-navigator.camera.getPicture(ftw, wtf, opts);
+  navigator.camera.getPicture(ftw, wtf, opts);
 }
-function ftw(imgURI){
-  document.getElementById('msg').textContent = imgURI;
-  document.getElementById('photo').src = imgURI;
+function ftw(imgURI) {
+  document.getElementById("msg").textContent = imgURI;
+  document.getElementById("photo").src = imgURI;
 }
-function wtf(msg){
-  document.getElementById('msg').textContent = msg;
+function wtf(msg) {
+  document.getElementById("msg").textContent = msg;
+}
+
+// apiCalls
+//
+//
+function generateURL(path) {
+  let newURL = `https://api.themoviedb.org/3${path}?api_key=bbd92ee26b128295e6b83f95ab79c675`;
+  return newURL;
+}
+function requestMovies(url, onComplete) {
+  const xhr = new XMLHttpRequest();
+  xhr.responseType = "json";
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      console.log(xhr.response.results);
+      onComplete(xhr.response.results);
+    }
+  };
+  xhr.open("GET", url);
+  xhr.send();
+}
+
+function searchMovie(value) {
+  let path = "/search/movie";
+  const url = generateURL(path) + "&query=" + value;
+  const render = Search.bind({ title: searchResults });
+  requestMovies(url, render);
+}
+function searchMovieHistory(value) {
+  let path = "/search/movie";
+  const url = generateURL(path) + "&query=" + value;
+  const render = SearchHistory.bind({ title: searchResults + value });
+  requestMovies(url, render);
+}
+function searchTvShow(value) {
+  let path = "/search/tv";
+  const url = generateURL(path) + "&query=" + value;
+  const render = Search.bind({ title: searchResults });
+  requestMovies(url, render);
+}
+function searchTvShowHistory(value) {
+  let path = "/search/tv";
+  const url = generateURL(path) + "&query=" + value;
+  const render = SearchHistory.bind({ title: searchResults + value });
+  requestMovies(url, render);
+}
+function getUpcomingMovies() {
+  let path = "/movie/upcoming";
+  const url = generateURL(path);
+  const render = Other.bind({ title: Upcoming });
+  requestMovies(url, render);
+}
+
+function getTopRatedMovies() {
+  let path = "/movie/top_rated";
+  const url = generateURL(path);
+  const render = Other.bind({ title: topRated });
+  requestMovies(url, render);
+}
+
+function getPopularMovies() {
+  let path = "/movie/popular";
+  const url = generateURL(path);
+  const render = Other.bind({ title: mostPopular });
+  requestMovies(url, render);
+}
+function getUpcomingTV() {
+  let path = "/tv/latest";
+  const url = generateURL(path);
+  const render = Other.bind({ title: UpcomingTV });
+  requestMovies(url, render);
+}
+function getTopRatedTV() {
+  let path = "/tv/top_rated";
+  const url = generateURL(path);
+  const render = Other.bind({ title: topRatedTV });
+  requestMovies(url, render);
+}
+function getPopularTV() {
+  let path = "/tv/popular";
+  const url = generateURL(path);
+  const render = Other.bind({ title: mostPopularTV });
+  requestMovies(url, render);
+}
+
+function dropDownInfoForVideo(url, sibling) {
+  const xhr = new XMLHttpRequest();
+  xhr.responseType = "json";
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      // console.log(xhr.response);
+      createVideoTemplate(xhr.response, sibling);
+    }
+  };
+  xhr.open("GET", url);
+  xhr.send();
+}
+function dropDownInfo(url, sibling) {
+  const xhr = new XMLHttpRequest();
+  xhr.responseType = "json";
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      // console.log(xhr.response);
+      createInfoTemplate(xhr.response, sibling);
+    }
+  };
+  xhr.open("GET", url);
+  xhr.send();
 }
