@@ -229,6 +229,9 @@ function changeLanguage() {
   if (language.innerText === "SK") {
     // title.innerHTML = "Moja Applikacia na Hladanie Filmov a TV Serialov";
     language.innerText = "EN";
+    tvshowButton.innerText = "TV Seriály";
+    movieButton.innerText = "Filmy";
+    historyButton.innerText = "Historia";
     overview = "Prehľad";
     rating = "Hodnotenie";
     release_date = "Dátum vydania";
@@ -247,6 +250,9 @@ function changeLanguage() {
   } else {
     // title.innerHTML = "My App to Find Movies and TV Shows";
     language.innerText = "SK";
+    tvshowButton.innerText = "TV Shows";
+    movieButton.innerText = "Movies";
+    historyButton.innerText = "History";
     overview = "Overview";
     rating = "Rating";
     release_date = "Release date";
