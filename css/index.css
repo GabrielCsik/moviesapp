@@ -1,11 +1,61 @@
+*{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+
+}
 body{
   font-family: "helvetica neue", sans-serif;
+}
+nav{
+  background: #0082e6;
+  height: 50px;
+  width: 100%;
+}
+label.logo{
+  color: white;
+  font-size: 35px;
+  line-height: 50px;
+  padding: 0 100px;
+  font-weight: bold;
+}
+nav ul{
+  float: right;
+  margin-right: 20px;
+}
+nav ul li{
+  display: inline-block;
+  line-height: 50px;
+  margin: 0 5px;
+}
+nav ul li a{
+  color: white;
+  font-size: 17px;
+  text-transform: uppercase;
+}
+a:hover{
+  background: #1b9bff;
+  transition: .5s;
+  cursor: pointer;
+}
+.checkbtn{
+  font-size: 30px;
+  color: white;
+  float: right;
+  line-height: 50px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+#check{
+  display: none;
 }
 h1{
   color: red;
 }
 #inputField{
-  width: 100%;
+  width: 70%;
   border: 2px solid #aaa;
   border-radius: 4px;
   margin: 8px 0;
@@ -17,66 +67,32 @@ h1{
   border-color: dodgerblue;
   box-shadow: 0 0 8px 0 dodgerblue;
 }
-.nav{
-  border-bottom: 1px solid rgb(95, 95, 95);
-  text-align: right;
-  height: 70px;
-  line-height: 70px;
-  /* z-index: 1; */
-  /* position: fixed; */
-}
-.menu{
-  margin: 0 40px 0 0;
-  text-align: center;
-  display: none;
-  /* z-index: 1; */
-}
 h2{
-  margin-top: 0;
+  padding: 5px 50px;
 }
-.menu a{
-  clear: right;
-  text-decoration: none;
-  color: grey;
-  margin: 0 10px;
-  line-height: 70px;
-  cursor: pointer;
-  display: block;
-  border-bottom: 1px solid rgb(95, 95, 95);
-  /* background-color: black; */
-  
+p{
+  margin: 5px;
 }
-label{
-  margin: 0 40px 0 0;
-  font-size: 26px;
-  line-height: 70px;
-  display: block;
-  cursor: pointer;
-  width: 26px;
-  float: right;
-}
-#toggle{
-  display: none;
-}
-#toggle:checked + .menu{
-  display: block;
-}
+
+
+
 
 #deleteButton {
   border: 2px solid #aaa;
   background: none;
-  padding: 6px 16px;
+  padding: 10px 16px;
   font-size: 18px;
   border-radius: 5px;
   font-family: "montserrat";
   cursor: pointer;
-  margin: 10px;
+  margin: 20px 10px;
+
   transition: 0.5s;
   margin: auto;
-  width: 100%;
+  /* width: 100%; */
   background-color: red;
   color: white;
-  /* width: 50%; */
+  width: 20%;
 }
 #submitButton:hover {
   border-color: red;
@@ -95,7 +111,7 @@ label{
   margin: 10px;
   transition: 0.5s;
   margin: auto;
-  width: 100%;
+  width: 20%;
   background-color: dodgerblue;
   color: white;
   /* width: 50%; */
@@ -123,7 +139,7 @@ section {
 }
 
 section img {
-  width: 175px;
+  width: 300px;
   transition: 250ms all;
 }
 img:hover {
@@ -165,7 +181,70 @@ img:hover {
 #tvShowDiv{
   display: none;
 }
-
+iframe{
+        width: 512px;
+        height: 320px;
+}
+@media only screen and (max-width: 952px) {
+  label.logo{
+    font-size: 30px;
+    padding-left: 50px;
+  }
+  section img {
+    width: 260px;
+    transition: 250ms all;
+  }
+}
+@media only screen and (max-width: 858px) {
+  .checkbtn{
+    display: block;
+  }
+  ul{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #2c3e50;
+    top: 50px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+  }
+  nav ul li{
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  nav ul li a{
+    font-size: 20px;
+  }
+  a:hover{
+    background: none;
+    color: #0082e6;
+  }
+  #check:checked ~ ul{
+    left: 0;
+  }
+  #inputField{
+    width: 100%;
+  }
+  section img {
+    width: 210px;
+    transition: 250ms all;
+  }
+  iframe{
+    width: 432px;
+    height: 270px;
+}
+#submitButton{
+  width: 100%;
+}
+#deleteButton{
+  width: 100%;
+}
+  
+}
+  
+    /* 
 @media only screen and (min-width: 768px) {
   
   #inputField{
@@ -212,7 +291,5 @@ img:hover {
         width: 512px;
         height: 320px;
     }
-    #submitButton{
-      width: 12%;
-    }
-}
+    
+} */
