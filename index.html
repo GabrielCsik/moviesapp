@@ -6,6 +6,12 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"
     /> -->
+    <!-- <meta http-equiv="Content-Security-Policy" 
+            content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; 
+            style-src 'self' 'unsafe-inline'; 
+            media-src *; 
+            script-src 'self' 'unsafe-inline';
+            img-src 'self' data: content:;"> -->
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <meta
@@ -46,10 +52,15 @@
       <div id="movies-searchable"></div>
       <div id="movies-container"></div>
     </div>
+    <div class="page">
+      <p><img src="" alt="image" id="photo"/></p>
+      <p><button id="btn">Take Picture</button></p>
+      <!-- <p id="msg"></p> -->
+  </div>
 
     <script type="text/javascript" src="cordova.js"></script>
     <!-- <script type="text/javascript" src="js/language.js"></script> -->
-    <script type="text/javascript" src="js/apiCalls.js"></script>
+    <!-- <script type="text/javascript" src="js/apiCalls.js"></script> -->
     <script type="text/javascript" src="js/index.js"></script>
   </body>
 </html>

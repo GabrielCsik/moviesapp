@@ -18,7 +18,7 @@ function requestMovies(url, onComplete) {
 function searchMovie(value) {
   let path = "/search/movie";
   const url = generateURL(path) + "&query=" + value;
-  const render = Search.bind({ title: "Search Results" });
+  const render = Search.bind({ title: "searchResults" });
   requestMovies(url, render);
 }
 function searchMovieHistory(value) {
