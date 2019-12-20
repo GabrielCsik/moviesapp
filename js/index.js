@@ -71,7 +71,8 @@ function onDeviceReady() {
       var path2 = xpath2.substring(0, xpath2.length - 1);
       let url = generateURL(path);
       let url2 = generateURL(path2);
-      // dropDownInfoForVideo(url, sibling);
+      
+      dropDownInfoForVideo(url, sibling);
       dropDownInfo(url2, sibling);
     }
     if (target.id === "content-close") {
@@ -163,7 +164,7 @@ function createIframe(video) {
 function createVideoTemplate(data, sibling) {
   console.log(data);
   // Search(xhr.response.results);
-  sibling.innerHTML = `<p id="content-close">X</p>`;
+  // sibling.innerHTML = `<p id="content-close">X</p>`;
   const videos = data.results;
   const length = videos.length > 3 ? 3 : videos.length;
   const iframeContainer = document.createElement("div");
@@ -175,18 +176,19 @@ function createVideoTemplate(data, sibling) {
   }
 }
 function createInfoTemplate(data, sibling) {
+  sibling.innerHTML = `<p id="content-close">X</p>`;
   if (movieOrserial === "movie") {
     console.log(data);
-    sibling.innerHTML = `<p id="content-close">X</p>`;
+    const infoContainer = document.createElement("div");
     // const info = document.createElement("div");
     var infoName = `<h3>${data.original_title}</h3>
   <p>${overview}: ${data.overview}</p>
   <p>${rating}: ${data.vote_average}/10</p>
   <p>${release_date}: ${data.release_date}</p>
   <p>${runtime}: ${data.runtime} min</p>`;
-    sibling.innerHTML += infoName;
+    infoContainer.innerHTML = infoName;
+    sibling.appendChild(infoContainer);
   } else {
-    sibling.innerHTML = `<p id="content-close">X</p>`;
     console.log(data);
     var infoName = `<h3>${data.original_name}</h3>
     <p>${overview}: ${data.overview}</p>
